@@ -71,9 +71,9 @@ const Index = () => {
         </div>
 
         {/* Tagline */}
-        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center z-20">
-          <p className="font-display text-lg text-foreground/40 tracking-wide glow-text">
-            A living architecture of light.
+        <div className="absolute top-8 left-8 z-20">
+          <p className="font-display text-sm text-foreground/30 tracking-widest uppercase glow-text">
+            A living architecture of light
           </p>
         </div>
       </section>

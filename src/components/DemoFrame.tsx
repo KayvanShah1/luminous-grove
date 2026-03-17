@@ -16,7 +16,7 @@ const DemoFrame = () => {
   }
 
   return (
-    <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 glass-panel glow-border rounded-2xl overflow-hidden animate-fade-in-up"
+    <div className="fixed bottom-20 right-6 z-40 glass-panel glow-border rounded-2xl overflow-hidden animate-fade-in-up"
       style={{ width: 320, height: 320 }}
     >
       <div className="flex items-center justify-between px-3 py-2 border-b border-border/30">
