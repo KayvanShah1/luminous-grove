@@ -254,8 +254,8 @@ class Branch {
 			// Green (120) → Yellow (60)
 			const eased = Math.pow(this.shineProgress, 0.75);
 			const shineHue = p.lerp(160, 60, eased);
-			p.drawingContext.shadowBlur = 10;
-			p.drawingContext.shadowColor = `hsla(${shineHue}, 100%, 50%, 0.8)`;
+			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 10;
+			(p.drawingContext as CanvasRenderingContext2D).shadowColor = `hsla(${shineHue}, 100%, 50%, 0.8)`;
 
 			// Draw segmented trail with fading width/opacity
 			for (let i = 0; i < steps; i++) {
