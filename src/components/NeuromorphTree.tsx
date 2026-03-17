@@ -1,8 +1,8 @@
 import { useEffect, useRef, useCallback, useState } from "react";
-import { TreeController } from "@/engine/TreeController";
-import { TreeConfig } from "@/engine/types";
+import { TreeController } from "../engine/TreeController";
+import { TreeConfig } from "../engine/types";
 
-interface NeuromorphTreeProps {
+export interface NeuromorphTreeProps {
   config?: Partial<TreeConfig>;
   className?: string;
   onNodeCount?: (count: number) => void;

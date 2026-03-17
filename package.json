@@ -1,11 +1,33 @@
 {
-	"name": "luminous-grove",
-	"private": true,
-	"version": "0.0.0",
+	"name": "@kayvanshah1/neuromorph",
+	"private": false,
+	"version": "0.1.0",
 	"type": "module",
+	"main": "dist-lib/index.cjs",
+	"module": "dist-lib/index.js",
+	"types": "dist-lib/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist-lib/index.d.ts",
+			"import": "./dist-lib/index.js",
+			"require": "./dist-lib/index.cjs"
+		},
+		"./core": {
+			"types": "./dist-lib/core.d.ts",
+			"import": "./dist-lib/core.js",
+			"require": "./dist-lib/core.cjs"
+		}
+	},
+	"files": [
+		"dist-lib",
+		"README.md",
+		"LICENSE"
+	],
+	"sideEffects": false,
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"build:lib": "tsup",
 		"build:dev": "vite build --mode development",
 		"lint": "eslint .",
 		"preview": "vite preview",
@@ -65,6 +87,10 @@
 		"vaul": "^0.9.9",
 		"zod": "^3.25.76"
 	},
+	"peerDependencies": {
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
+	},
 	"devDependencies": {
 		"@eslint/js": "^9.32.0",
 		"@playwright/test": "^1.57.0",
@@ -83,6 +109,7 @@
 		"globals": "^15.15.0",
 		"jsdom": "^20.0.3",
 		"postcss": "^8.5.6",
+		"tsup": "^8.0.0",
 		"tailwindcss": "^3.4.17",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.38.0",
