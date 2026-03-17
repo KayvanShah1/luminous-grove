@@ -25,6 +25,9 @@ jobs:
 
       - run: npm run build:lib
 
+      - name: Set publish version
+        run: npm version 0.1.${{ github.run_number }} --no-git-tag-version
+
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
