@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Github, SlidersHorizontal } from "lucide-react";
 import { TreeConfig, defaultConfig } from "@/engine/types";
 
 interface CustomizerPanelProps {
@@ -37,7 +38,7 @@ const SliderRow = ({ label, value, min, max, step = 1, onChange }: SliderRowProp
 );
 
 const CustomizerPanel = ({ config, onChange, onRegenerate }: CustomizerPanelProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const update = (key: keyof TreeConfig, value: number) => {
     onChange({ ...config, [key]: value });
@@ -45,12 +46,25 @@ const CustomizerPanel = ({ config, onChange, onRegenerate }: CustomizerPanelProp
 
   if (collapsed) {
     return (
-      <button
-        onClick={() => setCollapsed(false)}
-        className="fixed top-6 right-6 z-50 glass-panel glow-border rounded-xl px-4 py-2 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors"
-      >
-        ⚙ Customize
-      </button>
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-2">
+        <button
+          onClick={() => setCollapsed(false)}
+          className="glass-panel glow-border rounded-xl px-4 py-2 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+        >
+          <SlidersHorizontal size={14} />
+          Tune
+        </button>
+        <a
+          href="https://github.com/kayvanshah1/luminous-grove"
+          target="_blank"
+          rel="noreferrer"
+          className="glass-panel glow-border rounded-xl px-3 py-2 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+          aria-label="Open GitHub repository"
+        >
+          <Github size={14} />
+          GitHub
+        </a>
+      </div>
     );
   }
 
@@ -60,12 +74,24 @@ const CustomizerPanel = ({ config, onChange, onRegenerate }: CustomizerPanelProp
         <span className="text-xs font-display font-semibold tracking-wider uppercase text-foreground/80">
           Parameters
         </span>
-        <button
-          onClick={() => setCollapsed(true)}
-          className="text-muted-foreground hover:text-foreground transition-colors text-xs"
-        >
-          ✕
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href="https://github.com/kayvanshah1/luminous-grove"
+            target="_blank"
+            rel="noreferrer"
+            className="glass-panel glow-border rounded-lg px-2 py-1 text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 text-[10px] font-mono"
+            aria-label="Open GitHub repository"
+          >
+            <Github size={12} />
+            GitHub
+          </a>
+          <button
+            onClick={() => setCollapsed(true)}
+            className="text-muted-foreground hover:text-foreground transition-colors text-xs"
+          >
+            ✕
+          </button>
+        </div>
       </div>
 
       {/* Tree Structure */}
@@ -128,3 +154,5 @@ const CustomizerPanel = ({ config, onChange, onRegenerate }: CustomizerPanelProp
 };
 
 export default CustomizerPanel;
+
+
