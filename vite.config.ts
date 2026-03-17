@@ -12,7 +12,12 @@ export default defineConfig(({ mode }) => ({
 		},
 	},
 	plugins: [react()],
-	base: "/luminous-grove",
+	base: (() => {
+		if (mode !== "production") return "/";
+		const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
+		if (repo && repo.endsWith(".github.io")) return "/";
+		return `/${repo ?? "luminous-grove"}/`;
+	})(),
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
