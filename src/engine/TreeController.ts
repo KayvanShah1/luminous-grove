@@ -374,14 +374,14 @@ export class TreeController {
         if (!root) return;
         if (p.mouseX < 0 || p.mouseX > p.width || p.mouseY < 0 || p.mouseY > p.height) return;
 
-        if (p.mouseButton === p.LEFT) {
+        if ((p.mouseButton as any) === (p as any).LEFT) {
           const dx = p.mouseX - p.width / 2;
           const dy = p.mouseY - p.height;
           swayDirection = { x: dx, y: dy };
           swayStartTime = p.millis();
         }
 
-        if (p.mouseButton === p.RIGHT) {
+        if ((p.mouseButton as any) === (p as any).RIGHT) {
           root.resetShine();
           root.triggerShine(p.millis());
           lastShineTime = p.millis();
