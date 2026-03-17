@@ -293,8 +293,8 @@ class Branch {
 			// Core animated glow dot
 			const pulseSize = 3.5 + Math.sin(p.millis() / 100 + this.depth) * 1.4;
 
-			p.drawingContext.shadowBlur = 25;
-			p.drawingContext.shadowColor = `hsla(${shineHue}, 100%, 60%, 0.9)`;
+			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 25;
+			(p.drawingContext as CanvasRenderingContext2D).shadowColor = `hsla(${shineHue}, 100%, 60%, 0.9)`;
 			p.noStroke();
 			p.fill(`hsla(${shineHue}, 100%, 60%, 0.9)`);
 			p.circle(shineDotX, shineDotY, pulseSize);
