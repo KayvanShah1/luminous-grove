@@ -3,6 +3,30 @@
 	"private": false,
 	"version": "0.1.0",
 	"type": "module",
+	"description": "A biomimetic neural tree visualization where biology meets circuitry.",
+	"keywords": [
+		"generative",
+		"generative-art",
+		"procedural",
+		"canvas",
+		"visualization",
+		"fractal",
+		"tree",
+		"bioluminescent",
+		"interactive",
+		"react",
+		"typescript"
+	],
+	"author": "Kayvan Shah",
+	"license": "MIT",
+	"homepage": "https://kayvanshah1.github.io/luminous-grove/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KayvanShah1/luminous-grove"
+	},
+	"bugs": {
+		"url": "https://github.com/KayvanShah1/luminous-grove/issues"
+	},
 	"main": "dist-lib/index.cjs",
 	"module": "dist-lib/index.js",
 	"types": "dist-lib/index.d.ts",
