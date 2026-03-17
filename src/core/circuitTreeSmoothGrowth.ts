@@ -276,7 +276,7 @@ class Branch {
 				p.stroke(strokeColor);
 				p.line(x1, y1, x2, y2);
 			}
-			p.drawingContext.shadowBlur = 0;
+			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 0;
 
 			// 🌈 Multicolor glow ripple + core shine
 			const rippleCount = 4;
