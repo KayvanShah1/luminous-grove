@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
 		},
 	},
 	plugins: [react()],
-	base: mode === "production" ? "/luminous-grove" : "/",
+	base: "/luminous-grove",
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
