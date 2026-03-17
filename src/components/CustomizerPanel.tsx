@@ -109,12 +109,20 @@ const CustomizerPanel = ({ config, onChange, onRegenerate }: CustomizerPanelProp
         </div>
       </div>
 
-      <button
-        onClick={onRegenerate}
-        className="w-full py-2 rounded-lg text-xs font-mono uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary/20 transition-colors border border-primary/20"
-      >
-        Regenerate
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={() => onChange({ ...defaultConfig })}
+          className="flex-1 py-2 rounded-lg text-xs font-mono uppercase tracking-wider bg-muted/30 text-muted-foreground hover:bg-muted/50 transition-colors border border-border/30"
+        >
+          Reset
+        </button>
+        <button
+          onClick={onRegenerate}
+          className="flex-1 py-2 rounded-lg text-xs font-mono uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary/20 transition-colors border border-primary/20"
+        >
+          Regenerate
+        </button>
+      </div>
     </div>
   );
 };
