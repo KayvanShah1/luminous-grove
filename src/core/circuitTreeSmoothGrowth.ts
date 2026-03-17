@@ -299,7 +299,7 @@ class Branch {
 			p.fill(`hsla(${shineHue}, 100%, 60%, 0.9)`);
 			p.circle(shineDotX, shineDotY, pulseSize);
 
-			p.drawingContext.shadowBlur = 0;
+			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 0;
 			p.noFill();
 		}
 
