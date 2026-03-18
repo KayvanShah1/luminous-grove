@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Neuromorph Tree</title>
+  <desc id="desc">A luminous neural tree branching through a glowing forest.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071018" />
+      <stop offset="45%" stop-color="#0b1b21" />
+      <stop offset="100%" stop-color="#0c1216" />
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#7df2c1" stop-opacity="0.45" />
+      <stop offset="45%" stop-color="#36c6ff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#0b1015" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="trunk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a6f7d7" />
+      <stop offset="100%" stop-color="#2ee6b0" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <g opacity="0.35" fill="none" stroke="#2de0b3" stroke-width="1">
+    <path d="M0 520 C120 500 240 480 360 470" />
+    <path d="M1200 430 C980 420 860 400 720 360" />
+    <path d="M40 120 C200 140 300 160 420 200" />
+  </g>
+
+  <g filter="url(#softGlow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 560 C600 510 596 470 590 430 C584 390 574 340 560 300" stroke="url(#trunk)" stroke-width="10" fill="none" />
+    <path d="M560 300 C540 260 510 230 470 210" stroke="#6ef5ca" stroke-width="6" fill="none" />
+    <path d="M560 300 C590 260 630 235 680 220" stroke="#6ef5ca" stroke-width="6" fill="none" />
+    <path d="M470 210 C430 190 390 165 360 135" stroke="#49e6be" stroke-width="4" fill="none" />
+    <path d="M680 220 C720 205 760 180 820 150" stroke="#49e6be" stroke-width="4" fill="none" />
+    <path d="M540 360 C510 340 470 320 420 310" stroke="#5bf0c6" stroke-width="4" fill="none" />
+    <path d="M590 360 C630 340 690 320 750 310" stroke="#5bf0c6" stroke-width="4" fill="none" />
+  </g>
+
+  <g fill="#8ff8d7" opacity="0.9">
+    <circle cx="360" cy="135" r="5" />
+    <circle cx="420" cy="310" r="4" />
+    <circle cx="470" cy="210" r="4" />
+    <circle cx="720" cy="165" r="5" />
+    <circle cx="760" cy="310" r="4" />
+    <circle cx="820" cy="150" r="5" />
+  </g>
+
+  <g font-family="Space Grotesk, Plus Jakarta Sans, Arial, sans-serif" fill="#e6fff4">
+    <text x="90" y="170" font-size="56" font-weight="600">Neuromorph Tree</text>
+    <text x="90" y="230" font-size="28" fill="#b9f3dd">Living Architecture of Light</text>
+    <text x="90" y="510" font-size="22" fill="#8fe7c7">Interactive generative bioluminescent forest</text>
+  </g>
+</svg>

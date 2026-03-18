@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://kayvanshah1.github.io/luminous-grove/sitemap.xml
