@@ -1,7 +1,7 @@
 {
 	"name": "@kayvanshah1/neuromorph",
 	"private": false,
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"type": "module",
 	"description": "A biomimetic neural tree visualization where biology meets circuitry.",
 	"keywords": [
