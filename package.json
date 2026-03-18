@@ -3,6 +3,17 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"description": "A biomimetic neural tree visualization where biology meets circuitry.",
+	"author": "Kayvan Shah",
+	"license": "MIT",
+	"homepage": "https://kayvanshah1.github.io/luminous-grove/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KayvanShah1/luminous-grove"
+	},
+	"bugs": {
+		"url": "https://github.com/KayvanShah1/luminous-grove/issues"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
