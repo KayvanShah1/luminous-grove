@@ -23,10 +23,23 @@ export default defineConfig([
   {
     entry: {
       "core.iife": "src/core.ts",
+      "core.iife.global": "src/core.ts",
     },
     format: ["iife"],
     globalName: "Neuromorph",
     sourcemap: true,
+    minify: false,
+    outDir: "dist",
+    target: "es2020",
+  },
+  {
+    entry: {
+      "core.iife.min": "src/core.ts",
+      "core.iife.global.min": "src/core.ts",
+    },
+    format: ["iife"],
+    globalName: "Neuromorph",
+    sourcemap: false,
     minify: true,
     outDir: "dist",
     target: "es2020",
