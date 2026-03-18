@@ -33,9 +33,6 @@ jobs:
       - name: Set publish version
         run: pnpm version 0.1.${{ github.run_number }} --no-git-tag-version
 
-      - name: Debug git status
-        run: git status
-
-      - run: pnpm publish --provenance --access public
+      - run: pnpm publish --provenance --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
