@@ -19,6 +19,12 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@kayvanshah1/neuromorph": [
+        "./packages/neuromorph/src/index.ts"
+      ],
+      "@kayvanshah1/neuromorph/core": [
+        "./packages/neuromorph/src/core.ts"
       ]
     },
     "skipLibCheck": true,
