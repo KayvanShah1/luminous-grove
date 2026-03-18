@@ -53,6 +53,31 @@ instance.regenerate();
 instance.destroy();
 ```
 
+## Usage (Vanilla HTML)
+
+### ESM (modern browsers)
+
+```html
+<div id="neuromorph" style="height: 600px"></div>
+<script type="module">
+  import { createNeuromorphTree } from "https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph@0.1.14/dist/core.js";
+
+  const el = document.getElementById("neuromorph");
+  const instance = createNeuromorphTree(el, { treeScale: 0.9 });
+</script>
+```
+
+### Script tag (no modules)
+
+```html
+<div id="neuromorph" style="height: 600px"></div>
+<script src="https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph@0.1.14/dist/core.iife.js"></script>
+<script>
+  const el = document.getElementById("neuromorph");
+  const instance = Neuromorph.createNeuromorphTree(el, { treeScale: 0.9 });
+</script>
+```
+
 ## API Reference
 
 ### `NeuromorphTree` (React)
