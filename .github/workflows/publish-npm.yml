@@ -19,15 +19,20 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-          cache: npm
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-      - run: npm ci
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
-      - run: npm run build:lib
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run build:lib
 
       - name: Set publish version
-        run: npm version 0.1.${{ github.run_number }} --no-git-tag-version
+        run: pnpm version 0.1.${{ github.run_number }} --no-git-tag-version
 
-      - run: npm publish --provenance --access public
+      - run: pnpm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
