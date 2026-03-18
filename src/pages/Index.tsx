@@ -1,11 +1,10 @@
 import { useState, useCallback, useRef } from "react";
-import NeuromorphTree from "@/components/NeuromorphTree";
+import { NeuromorphTree, TreeConfig, defaultConfig } from "@kayvanshah1/neuromorph";
 import ForestEnvironment from "@/components/ForestEnvironment";
 import InstructionTooltip from "@/components/InstructionTooltip";
 import CustomizerPanel from "@/components/CustomizerPanel";
 import StatusPill from "@/components/StatusPill";
 import DemoFrame from "@/components/DemoFrame";
-import { TreeConfig, defaultConfig } from "@/engine/types";
 
 const Index = () => {
 	const [config, setConfig] = useState<TreeConfig>({ ...defaultConfig });
