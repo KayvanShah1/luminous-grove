@@ -97,8 +97,8 @@ const Index = () => {
 			<InstructionTooltip />
 			<StatusPill nodeCount={nodeCount} />
 			<DemoFrame />
-			<div className="fixed bottom-1.5 left-6 z-20 text-[10px] font-mono uppercase tracking-widest text-foreground/30">
-				(c) {year} Kayvan Shah. All rights reserved.
+			<div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-20 text-[10px] font-mono uppercase tracking-widest text-foreground/20">
+				© {year} Kayvan Shah
 			</div>
 		</div>
 	);

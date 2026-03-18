@@ -1,4 +1,5 @@
-import p5 from "p5";
+// @ts-ignore - p5 types optional
+import type p5 from "p5";
 
 const maxDepth = 6;
 const maxBranchesPerNode = 3;
