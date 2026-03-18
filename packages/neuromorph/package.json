@@ -1,0 +1,60 @@
+{
+  "name": "@kayvanshah1/neuromorph",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A biomimetic neural tree visualization where biology meets circuitry.",
+  "keywords": [
+    "generative",
+    "generative-art",
+    "procedural",
+    "canvas",
+    "visualization",
+    "fractal",
+    "tree",
+    "bioluminescent",
+    "interactive",
+    "react",
+    "typescript"
+  ],
+  "author": "Kayvan Shah",
+  "license": "MIT",
+  "homepage": "https://kayvanshah1.github.io/luminous-grove/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KayvanShah1/luminous-grove",
+    "directory": "packages/neuromorph"
+  },
+  "bugs": {
+    "url": "https://github.com/KayvanShah1/luminous-grove/issues"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
