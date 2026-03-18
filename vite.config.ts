@@ -21,6 +21,8 @@ export default defineConfig(({ mode }) => ({
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
+			"@kayvanshah1/neuromorph/core": path.resolve(__dirname, "./packages/neuromorph/src/core.ts"),
+			"@kayvanshah1/neuromorph": path.resolve(__dirname, "./packages/neuromorph/src/index.ts"),
 		},
 	},
 }));

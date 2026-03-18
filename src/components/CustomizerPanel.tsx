@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Github, SlidersHorizontal } from "lucide-react";
-import { TreeConfig, defaultConfig } from "@/engine/types";
+import { TreeConfig, defaultConfig } from "@kayvanshah1/neuromorph";
 
 interface CustomizerPanelProps {
   config: TreeConfig;

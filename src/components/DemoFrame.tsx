@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NeuromorphTree from "./NeuromorphTree";
+import { NeuromorphTree } from "@kayvanshah1/neuromorph";
 
 const DemoFrame = () => {
   const [minimized, setMinimized] = useState(true);

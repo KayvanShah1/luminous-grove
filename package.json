@@ -1,57 +1,12 @@
 {
-	"name": "@kayvanshah1/neuromorph",
-	"private": false,
-	"version": "0.1.0",
+	"name": "luminous-grove",
+	"private": true,
+	"version": "0.0.0",
 	"type": "module",
-	"description": "A biomimetic neural tree visualization where biology meets circuitry.",
-	"keywords": [
-		"generative",
-		"generative-art",
-		"procedural",
-		"canvas",
-		"visualization",
-		"fractal",
-		"tree",
-		"bioluminescent",
-		"interactive",
-		"react",
-		"typescript"
-	],
-	"author": "Kayvan Shah",
-	"license": "MIT",
-	"homepage": "https://kayvanshah1.github.io/luminous-grove/",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/KayvanShah1/luminous-grove"
-	},
-	"bugs": {
-		"url": "https://github.com/KayvanShah1/luminous-grove/issues"
-	},
-	"main": "dist-lib/index.cjs",
-	"module": "dist-lib/index.js",
-	"types": "dist-lib/index.d.ts",
-	"exports": {
-		".": {
-			"types": "./dist-lib/index.d.ts",
-			"import": "./dist-lib/index.js",
-			"require": "./dist-lib/index.cjs"
-		},
-		"./core": {
-			"types": "./dist-lib/core.d.ts",
-			"import": "./dist-lib/core.js",
-			"require": "./dist-lib/core.cjs"
-		}
-	},
-	"files": [
-		"dist-lib",
-		"README.md",
-		"LICENSE"
-	],
-	"sideEffects": false,
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"build:lib": "tsup",
+		"build:lib": "pnpm --filter @kayvanshah1/neuromorph build",
 		"build:dev": "vite build --mode development",
 		"lint": "eslint .",
 		"preview": "vite preview",
@@ -62,6 +17,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.10.0",
+		"@kayvanshah1/neuromorph": "workspace:*",
 		"@radix-ui/react-accordion": "^1.2.11",
 		"@radix-ui/react-alert-dialog": "^1.1.14",
 		"@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -111,10 +67,6 @@
 		"vaul": "^0.9.9",
 		"zod": "^3.25.76"
 	},
-	"peerDependencies": {
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0"
-	},
 	"devDependencies": {
 		"@eslint/js": "^9.32.0",
 		"@playwright/test": "^1.57.0",
@@ -133,8 +85,8 @@
 		"globals": "^15.15.0",
 		"jsdom": "^20.0.3",
 		"postcss": "^8.5.6",
-		"tsup": "^8.0.0",
 		"tailwindcss": "^3.4.17",
+		"tsup": "^8.0.0",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.38.0",
 		"vite": "^8.0.0",

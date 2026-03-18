@@ -1,5 +1,5 @@
-import { TreeController } from "../engine/TreeController";
-import { TreeConfig, defaultConfig } from "../engine/types";
+import { TreeController } from "./engine/TreeController";
+import { TreeConfig, defaultConfig } from "./engine/types";
 
 export type { TreeConfig };
 export { defaultConfig, TreeController };

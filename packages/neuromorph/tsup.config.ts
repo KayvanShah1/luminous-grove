@@ -2,19 +2,19 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: {
-    index: "src/lib/index.ts",
-    core: "src/lib/core.ts",
+    index: "src/index.ts",
+    core: "src/core.ts",
   },
   format: ["esm", "cjs"],
   dts: true,
   sourcemap: true,
   clean: true,
-  outDir: "dist-lib",
+  outDir: "dist",
   splitting: false,
   treeshake: true,
   target: "es2020",
   external: ["react", "react-dom"],
-  tsconfig: "tsconfig.lib.json",
+  tsconfig: "tsconfig.json",
   outExtension({ format }) {
     return { js: format === "cjs" ? ".cjs" : ".js" };
   },
