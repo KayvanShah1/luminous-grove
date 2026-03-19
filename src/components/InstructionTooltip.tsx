@@ -56,21 +56,21 @@ const InstructionTooltip = () => {
             </button>
           </div>
           <div className="space-y-1.5 sm:space-y-2 font-mono text-[10px] sm:text-xs text-muted-foreground">
-            <div className="flex justify-between">
-              <span className="text-foreground/60">Tap / Click</span>
-              <span className="text-primary/80">Apply sway</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-foreground/60 shrink-0">Tap / Click</span>
+              <span className="text-primary/80 ml-auto shrink-0">Apply sway</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-foreground/60">Long Press / Right Click</span>
-              <span className="text-primary/80">Signal pulse</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-foreground/60 shrink-0">Long Press / Right Click</span>
+              <span className="text-primary/80 ml-auto shrink-0">Signal pulse</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-foreground/60">Double Tap</span>
-              <span className="text-primary/80">Regenerate</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-foreground/60 shrink-0">Double Tap</span>
+              <span className="text-primary/80 ml-auto shrink-0">Regenerate</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-foreground/60">Press S</span>
-              <span className="text-primary/80">Screenshot</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-foreground/60 shrink-0">Press S</span>
+              <span className="text-primary/80 ml-auto shrink-0">Screenshot</span>
             </div>
           </div>
         </div>
