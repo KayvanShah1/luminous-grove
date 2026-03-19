@@ -1,5 +1,11 @@
 # 🌿 Neuromorph Tree
 
+[![npm version](https://img.shields.io/npm/v/@kayvanshah1/neuromorph?color=orange&logo=npm)](https://www.npmjs.com/package/@kayvanshah1/neuromorph)
+[![Publish Package](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml)
+[![Deploy Pages](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 **A biomimetic neural tree visualization — where biology meets circuitry.**
 
 Neuromorph Tree is a real-time, interactive generative art piece that renders
@@ -7,12 +13,6 @@ bioluminescent fractal trees using the HTML5 Canvas API. Inspired by the
 branching patterns found in neural dendrites, fungal mycelium, and circuit board
 traces, it produces living, breathing digital organisms that respond to your
 touch.
-
-[![npm version](https://img.shields.io/npm/v/@kayvanshah1/neuromorph?color=orange&logo=npm)](https://www.npmjs.com/package/@kayvanshah1/neuromorph)
-[![Publish Package](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml)
-[![Deploy Pages](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 ## Overview
 
