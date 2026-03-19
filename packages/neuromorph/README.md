@@ -2,10 +2,18 @@
 
 A biomimetic neural tree visualization where biology meets circuitry.
 
-This package provides:
+Neuromorph is a real-time generative system that simulates neural-style
+branching structures with interactive physics and bioluminescent signal
+propagation.
 
-- `NeuromorphTree` React component
-- `createNeuromorphTree` core API for framework-agnostic use
+## Features
+
+- Fractal, recursive tree generation
+- Signal pulse propagation through branches
+- Physics-based sway interactions
+- Real-time configurable parameters
+- Lightweight (Canvas 2D, no heavy dependencies)
+- React + framework-agnostic core API
 
 ## Install
 
@@ -58,11 +66,12 @@ instance.destroy();
 
 ```html
 <div id="neuromorph" style="height: 600px"></div>
+
 <script type="module">
-	import { createNeuromorphTree } from "https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph@0.1.14/dist/core.js";
+	import { createNeuromorphTree } from "https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph/dist/core.js";
 
 	const el = document.getElementById("neuromorph");
-	const instance = createNeuromorphTree(el, { treeScale: 0.9 });
+	createNeuromorphTree(el, { treeScale: 0.9 });
 </script>
 ```
 
@@ -70,15 +79,13 @@ instance.destroy();
 
 ```html
 <div id="neuromorph" style="height: 600px"></div>
-<script src="https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph@0.1.14/dist/core.iife.global.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@kayvanshah1/neuromorph/dist/iife/neuromorph.min.js"></script>
 <script>
 	const el = document.getElementById("neuromorph");
-	const instance = Neuromorph.createNeuromorphTree(el, { treeScale: 0.9 });
+	Neuromorph.createNeuromorphTree(el, { treeScale: 0.9 });
 </script>
 ```
-
-Note: Unminified builds are available as `dist/core.iife.js` and
-`dist/core.iife.global.js`.
 
 ## API Reference
 
@@ -92,12 +99,11 @@ type NeuromorphTreeProps = {
 };
 ```
 
-Notes:
+**Notes:**
 
-- The component renders into a full-size container. Ensure the parent has an
-  explicit size.
-- `config` is merged over defaults; update it to tweak behavior at runtime.
-- `onNodeCount` is called after initialization and on regeneration.
+- Parent container must have an explicit size
+- `config` is merged with defaults
+- `onNodeCount` fires after init and regeneration
 
 ### `createNeuromorphTree` (Core)
 
@@ -116,42 +122,33 @@ type NeuromorphInstance = {
 };
 ```
 
-Notes:
+**Notes:**
 
-- Call `destroy()` to clean up listeners and animation.
-- `updateConfig()` applies changes without rebuilding the instance.
-- `regenerate()` rebuilds the tree with a new random seed.
+- Call `destroy()` to clean up listeners and animation
+- `updateConfig()` applies changes without full rebuild
+- `regenerate()` creates a new tree with a fresh seed
 
-### Config Exports
+## Configuration
 
-```ts
-type TreeConfig = {
-	/* see Tunable Parameters */
-};
-const defaultConfig: TreeConfig;
-```
+### `TreeConfig`
 
-## Tunable Parameters
-
-All parameters below map to `TreeConfig`. Units are milliseconds where noted.
-
-| Key                 | Default | Description                                |
-| ------------------- | ------- | ------------------------------------------ |
-| `maxDepth`          | `6`     | Recursion depth for branch generation.     |
-| `maxBranches`       | `3`     | Maximum child branches per node.           |
-| `branchSpread`      | `50`    | Angular spread (degrees) between branches. |
-| `treeScale`         | `0.92`  | Overall size multiplier for the tree.      |
-| `shineSpeed`        | `130`   | Pulse travel speed (ms).                   |
-| `swayIntensity`     | `0.065` | Sway amplitude during physics motion.      |
-| `swayDecay`         | `3000`  | Sway damping time (ms).                    |
-| `growthDelay`       | `375`   | Base delay before growth starts (ms).      |
-| `childDelay`        | `120`   | Per-child stagger delay (ms).              |
-| `growthDuration`    | `1800`  | Branch growth animation duration (ms).     |
-| `leafGlowIntensity` | `0.85`  | Leaf glow strength (0–1).                  |
-| `leafDensity`       | `0.7`   | Probability of leaf nodes (0–1).           |
-| `branchThickness`   | `4`     | Base stroke width for branches.            |
-| `glowStrength`      | `25`    | Shadow blur radius for glow.               |
-| `shineInterval`     | `3000`  | Auto-pulse interval (ms).                  |
+| Key                 | Default | Description                    |
+| ------------------- | ------- | ------------------------------ |
+| `maxDepth`          | `6`     | Recursion depth                |
+| `maxBranches`       | `3`     | Max children per node          |
+| `branchSpread`      | `50`    | Angular spread (degrees)       |
+| `treeScale`         | `0.92`  | Overall size multiplier        |
+| `shineSpeed`        | `130`   | Pulse speed (ms)               |
+| `swayIntensity`     | `0.065` | Sway amplitude                 |
+| `swayDecay`         | `3000`  | Sway damping (ms)              |
+| `growthDelay`       | `375`   | Initial growth delay (ms)      |
+| `childDelay`        | `120`   | Per-child delay (ms)           |
+| `growthDuration`    | `1800`  | Branch animation duration (ms) |
+| `leafGlowIntensity` | `0.85`  | Leaf brightness (0–1)          |
+| `leafDensity`       | `0.7`   | Leaf probability               |
+| `branchThickness`   | `4`     | Stroke width                   |
+| `glowStrength`      | `25`    | Glow intensity                 |
+| `shineInterval`     | `3000`  | Auto pulse interval (ms)       |
 
 ## Build
 

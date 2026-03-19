@@ -1,7 +1,7 @@
 {
 	"name": "@kayvanshah1/neuromorph",
-	"private": false,
 	"version": "0.1.17",
+	"private": false,
 	"type": "module",
 	"description": "A biomimetic neural tree visualization where biology meets circuitry.",
 	"keywords": [
@@ -12,7 +12,6 @@
 		"visualization",
 		"fractal",
 		"tree",
-		"bioluminescent",
 		"interactive",
 		"react",
 		"typescript"
@@ -28,11 +27,9 @@
 	"bugs": {
 		"url": "https://github.com/KayvanShah1/luminous-grove/issues"
 	},
-	"main": "dist/index.cjs",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"unpkg": "dist/core.iife.global.min.js",
-	"jsdelivr": "dist/core.iife.global.min.js",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -43,12 +40,10 @@
 			"types": "./dist/core.d.ts",
 			"import": "./dist/core.js",
 			"require": "./dist/core.cjs"
-		},
-		"./core.iife": "./dist/core.iife.js",
-		"./core.iife.min": "./dist/core.iife.min.js",
-		"./core.iife.global": "./dist/core.iife.global.js",
-		"./core.iife.global.min": "./dist/core.iife.global.min.js"
+		}
 	},
+	"unpkg": "./dist/iife/neuromorph.min.js",
+	"jsdelivr": "./dist/iife/neuromorph.min.js",
 	"files": [
 		"dist",
 		"README.md",
