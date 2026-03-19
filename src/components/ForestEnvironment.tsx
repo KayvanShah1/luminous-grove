@@ -20,6 +20,8 @@ const ForestEnvironment = () => {
     const ctx = canvas.getContext("2d")!;
     let animFrame: number;
     const fireflies: Firefly[] = [];
+    const isMobile = window.innerWidth < 768;
+    const fireflyCount = isMobile ? 25 : 60;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -29,7 +31,7 @@ const ForestEnvironment = () => {
     window.addEventListener("resize", resize);
 
     // Create fireflies
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < fireflyCount; i++) {
       fireflies.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
@@ -82,15 +84,17 @@ const ForestEnvironment = () => {
         ctx.fill();
       }
 
-      // Ambient light beams
-      for (let i = 0; i < 3; i++) {
-        const beamX = canvas.width * (0.2 + i * 0.3) + Math.sin(t * 0.1 + i) * 50;
-        const beamGrad = ctx.createLinearGradient(beamX, 0, beamX + 30, canvas.height);
-        beamGrad.addColorStop(0, "hsla(180, 40%, 50%, 0.01)");
-        beamGrad.addColorStop(0.3, "hsla(180, 40%, 50%, 0.015)");
-        beamGrad.addColorStop(1, "transparent");
-        ctx.fillStyle = beamGrad;
-        ctx.fillRect(beamX - 15, 0, 30, canvas.height);
+      // Ambient light beams (skip on mobile for perf)
+      if (!isMobile) {
+        for (let i = 0; i < 3; i++) {
+          const beamX = canvas.width * (0.2 + i * 0.3) + Math.sin(t * 0.1 + i) * 50;
+          const beamGrad = ctx.createLinearGradient(beamX, 0, beamX + 30, canvas.height);
+          beamGrad.addColorStop(0, "hsla(180, 40%, 50%, 0.01)");
+          beamGrad.addColorStop(0.3, "hsla(180, 40%, 50%, 0.015)");
+          beamGrad.addColorStop(1, "transparent");
+          ctx.fillStyle = beamGrad;
+          ctx.fillRect(beamX - 15, 0, 30, canvas.height);
+        }
       }
 
       animFrame = requestAnimationFrame(draw);

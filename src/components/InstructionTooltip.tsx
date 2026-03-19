@@ -31,10 +31,10 @@ const InstructionTooltip = () => {
       {/* Toggle button */}
       <button
         onClick={toggle}
-        className="fixed bottom-6 left-6 z-50 w-9 h-9 rounded-full glass-panel flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 w-8 h-8 sm:w-9 sm:h-9 rounded-full glass-panel flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
         title="Controls"
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-4 sm:h-4">
           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
           <text x="8" y="12" textAnchor="middle" fill="currentColor" fontSize="10" fontFamily="var(--font-mono)">i</text>
         </svg>
@@ -43,11 +43,11 @@ const InstructionTooltip = () => {
       {/* Tooltip */}
       {visible && (
         <div
-          className="fixed bottom-16 left-6 z-50 glass-panel glow-border rounded-xl p-4 w-64 animate-fade-in-up"
+          className="fixed bottom-14 left-4 sm:bottom-16 sm:left-6 z-50 glass-panel glow-border rounded-xl p-3 sm:p-4 w-56 sm:w-64 animate-fade-in-up"
           style={{ animationDuration: "0.3s" }}
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-display font-semibold tracking-wider uppercase text-foreground/80">Controls</span>
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <span className="text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase text-foreground/80">Controls</span>
             <button
               onClick={dismiss}
               className="text-muted-foreground hover:text-foreground transition-colors text-xs"
@@ -55,21 +55,21 @@ const InstructionTooltip = () => {
               ✕
             </button>
           </div>
-          <div className="space-y-2 font-mono text-xs text-muted-foreground">
+          <div className="space-y-1.5 sm:space-y-2 font-mono text-[10px] sm:text-xs text-muted-foreground">
             <div className="flex justify-between">
-              <span className="text-foreground/60">Left Click</span>
+              <span className="text-foreground/60">Tap / Click</span>
               <span className="text-primary/80">Apply sway</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-foreground/60">Right Click</span>
+              <span className="text-foreground/60">Long Press / Right Click</span>
               <span className="text-primary/80">Signal pulse</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-foreground/60">Double Click</span>
+              <span className="text-foreground/60">Double Tap</span>
               <span className="text-primary/80">Regenerate</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-foreground/60">S</span>
+              <span className="text-foreground/60">Press S</span>
               <span className="text-primary/80">Screenshot</span>
             </div>
           </div>

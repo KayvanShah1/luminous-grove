@@ -3,9 +3,10 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@kayvanshah1/neuromorph",
+      "name": "luminous-grove",
       "dependencies": {
         "@hookform/resolvers": "^3.10.0",
+        "@kayvanshah1/neuromorph": "workspace:*",
         "@radix-ui/react-accordion": "^1.2.11",
         "@radix-ui/react-alert-dialog": "^1.1.14",
         "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -80,9 +81,13 @@
         "vite": "^8.0.0",
         "vitest": "^4.1.0",
       },
+    },
+    "packages/neuromorph": {
+      "name": "@kayvanshah1/neuromorph",
+      "version": "0.1.18",
       "peerDependencies": {
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
       },
     },
   },
@@ -198,6 +203,8 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "3.1.2", "@jridgewell/sourcemap-codec": "1.5.5" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
+
+    "@kayvanshah1/neuromorph": ["@kayvanshah1/neuromorph@workspace:packages/neuromorph"],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.1", "", { "dependencies": { "@emnapi/core": "1.9.0", "@emnapi/runtime": "1.9.0", "@tybys/wasm-util": "0.10.1" } }, "sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A=="],
 
