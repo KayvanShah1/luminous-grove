@@ -1,11 +1,15 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy Demo Site
 
 on:
   push:
     branches: ["main"]
     paths-ignore:
       - "packages/neuromorph/**"
+      - ".github/workflows/**"
+      - "README.md"
+      - "LICENSE"
+      - ".gitignore"
 
   workflow_dispatch:
 
