@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { NeuromorphTree, TreeConfig, defaultConfig } from "@kayvanshah1/neuromorph";
 import ForestEnvironment from "@/components/ForestEnvironment";
 import InstructionTooltip from "@/components/InstructionTooltip";
@@ -38,7 +38,6 @@ const Index = () => {
 							"radial-gradient(ellipse 80% 60% at 50% 50%, hsla(180, 20%, 12%, 0.3) 0%, transparent 70%)",
 					}}
 				/>
-				{/* Distant forest silhouettes */}
 				<div
 					className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.04]"
 					style={{
@@ -60,7 +59,7 @@ const Index = () => {
 				<h1
 					className="absolute font-display font-bold text-foreground/[0.04] select-none pointer-events-none leading-none"
 					style={{
-						fontSize: "clamp(4rem, 12vw, 10rem)",
+						fontSize: "clamp(2.5rem, 12vw, 10rem)",
 						letterSpacing: "-0.04em",
 					}}
 				>
@@ -80,8 +79,8 @@ const Index = () => {
 				</div>
 
 				{/* Tagline */}
-				<div className="absolute top-8 left-8 z-20">
-					<p className="font-display text-sm text-foreground/30 tracking-widest uppercase glow-text">
+				<div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
+					<p className="font-display text-[10px] sm:text-sm text-foreground/30 tracking-widest uppercase glow-text">
 						A living architecture of light
 					</p>
 				</div>
@@ -96,7 +95,7 @@ const Index = () => {
 			<InstructionTooltip />
 			<StatusPill nodeCount={nodeCount} />
 			<DemoFrame />
-			<div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-20 text-[10px] font-mono uppercase tracking-widest text-foreground/20">
+			<div className="fixed bottom-1 left-1/2 -translate-x-1/2 z-20 text-[8px] sm:text-[10px] font-mono uppercase tracking-widest text-foreground/20">
 				© {year} Kayvan Shah
 			</div>
 		</div>
