@@ -1,5 +1,9 @@
 import { useState, useCallback } from "react";
-import { NeuromorphTree, TreeConfig, defaultConfig } from "@kayvanshah1/neuromorph";
+import {
+	NeuromorphTree,
+	TreeConfig,
+	defaultConfig,
+} from "@kayvanshah1/neuromorph";
 import ForestEnvironment from "@/components/ForestEnvironment";
 import InstructionTooltip from "@/components/InstructionTooltip";
 import CustomizerPanel from "@/components/CustomizerPanel";
@@ -95,7 +99,7 @@ const Index = () => {
 			<InstructionTooltip />
 			<StatusPill nodeCount={nodeCount} />
 			<DemoFrame />
-			<div className="fixed bottom-1 left-1/2 -translate-x-1/2 z-20 text-[8px] sm:text-[10px] font-mono uppercase tracking-widest text-foreground/20">
+			<div className="fixed bottom-1 md:bottom-3 left-1/2 -translate-x-1/2 z-20 text-[8px] sm:text-[10px] font-mono uppercase tracking-widest text-foreground/20">
 				© {year} Kayvan Shah
 			</div>
 		</div>
