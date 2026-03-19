@@ -1,4 +1,4 @@
-// @ts-ignore - p5 types optional
+// @ts-expect-error - no p5 types
 import type p5 from "p5";
 
 const maxDepth = 6;
@@ -51,7 +51,8 @@ class Branch {
 		this.createdTime = createdTime;
 		this.length = p.random(20, 70) * treeScale;
 		// Depth-based leaf probability (outer canopy more likely)
-		this.hasLeaf = p.random() < p.map(this.depth, 1, maxDepth, 0.55, 0.9, true);
+		this.hasLeaf =
+			p.random() < p.map(this.depth, 1, maxDepth, 0.55, 0.9, true);
 	}
 
 	triggerShine(startTime: number) {
@@ -62,7 +63,11 @@ class Branch {
 	update(p: p5, now: number) {
 		const t = now / 1000;
 		const elapsedSinceCreated = now - this.createdTime;
-		this.lengthProgress = p.constrain(elapsedSinceCreated / growthDuration, 0, 1);
+		this.lengthProgress = p.constrain(
+			elapsedSinceCreated / growthDuration,
+			0,
+			1,
+		);
 
 		// ✅ A. Skip update if not growing and not shining
 		if (this.lengthProgress < 0.05 && this.shineProgress < 0) return;
@@ -79,7 +84,8 @@ class Branch {
 				// one way
 				const directionalInfluence = swayDirection.x * 0.00075; // tweak this factor
 				const oscillation = Math.sin(t * 2 + this.depth) * 0.003;
-				swayOffset += (directionalInfluence + oscillation) * decayFactor;
+				swayOffset +=
+					(directionalInfluence + oscillation) * decayFactor;
 			}
 
 			this.animatedAngle = this.baseAngle + swayOffset;
@@ -97,7 +103,11 @@ class Branch {
 		// Shine logic
 		if (this.shineProgress >= 0 && this.shineProgress < 1) {
 			const shineElapsed = (now - (this.shineStartTime ?? now)) / 1000;
-			this.shineProgress = Math.min(1, (shineElapsed * shineSpeed) / (this.length * this.lengthProgress || 1));
+			this.shineProgress = Math.min(
+				1,
+				(shineElapsed * shineSpeed) /
+					(this.length * this.lengthProgress || 1),
+			);
 			if (this.shineProgress === 1) {
 				for (const child of this.children) {
 					if (child.shineProgress < 0) child.triggerShine(now);
@@ -117,7 +127,12 @@ class Branch {
 		// Random relaxed margin between 15 and 40px, scaled by depth
 		const randomness = p.random(0, 1);
 		const margin = randomness * (1 + this.depth / maxDepth);
-		return x >= -margin && x <= p.width + margin && y >= -margin && y <= p.height + margin;
+		return (
+			x >= -margin &&
+			x <= p.width + margin &&
+			y >= -margin &&
+			y <= p.height + margin
+		);
 	}
 
 	growChildren(p: p5) {
@@ -140,7 +155,9 @@ class Branch {
 		} else {
 			const numChildren = p.int(p.random(1, maxBranchesPerNode + 1));
 			for (let i = 0; i < numChildren; i++) {
-				childAngles.push(this.baseAngle + p.random(-p.PI / 3.5, p.PI / 3.5));
+				childAngles.push(
+					this.baseAngle + p.random(-p.PI / 3.5, p.PI / 3.5),
+				);
 			}
 		}
 
@@ -161,8 +178,8 @@ class Branch {
 							originX: this.getEndPosition().x,
 							originY: this.getEndPosition().y,
 						},
-						childTime
-					)
+						childTime,
+					),
 				);
 			}
 		}
@@ -209,7 +226,11 @@ class Branch {
 		p.line(start.x, start.y, end.x, end.y);
 
 		// 🌿 Draw leaf at end if this is a terminal branch (attached state only)
-		if (this.children.length === 0 && this.hasLeaf && this.lengthProgress >= 0.99) {
+		if (
+			this.children.length === 0 &&
+			this.hasLeaf &&
+			this.lengthProgress >= 0.99
+		) {
 			// keep leaves small
 			const base = p.map(this.depth, 2, maxDepth, 3, 6, true);
 			const pulse = 1 + 0.06 * Math.sin(p.millis() / 500 + this.depth);
@@ -242,8 +263,12 @@ class Branch {
 		// Shine trail
 		if (this.shineProgress >= 0 && this.shineProgress < 1) {
 			const baseLen = this.length * this.lengthProgress;
-			const shineDotX = start.x + Math.cos(this.animatedAngle) * baseLen * this.shineProgress;
-			const shineDotY = start.y + Math.sin(this.animatedAngle) * baseLen * this.shineProgress;
+			const shineDotX =
+				start.x +
+				Math.cos(this.animatedAngle) * baseLen * this.shineProgress;
+			const shineDotY =
+				start.y +
+				Math.sin(this.animatedAngle) * baseLen * this.shineProgress;
 			// const pulse = 40 * p.lerp(2.0, 0.3, this.depth / maxDepth) + Math.sin(p.millis() / 100 + this.depth) * 4;
 
 			// Config
@@ -256,17 +281,22 @@ class Branch {
 			const eased = Math.pow(this.shineProgress, 0.75);
 			const shineHue = p.lerp(160, 60, eased);
 			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 10;
-			(p.drawingContext as CanvasRenderingContext2D).shadowColor = `hsla(${shineHue}, 100%, 50%, 0.8)`;
+			(p.drawingContext as CanvasRenderingContext2D).shadowColor =
+				`hsla(${shineHue}, 100%, 50%, 0.8)`;
 
 			// Draw segmented trail with fading width/opacity
 			for (let i = 0; i < steps; i++) {
 				const t1 = p.lerp(trailStart, trailEnd, i / steps);
 				const t2 = p.lerp(trailStart, trailEnd, (i + 1) / steps);
 
-				const x1 = start.x + Math.cos(this.animatedAngle) * baseLenTrail * t1;
-				const y1 = start.y + Math.sin(this.animatedAngle) * baseLenTrail * t1;
-				const x2 = start.x + Math.cos(this.animatedAngle) * baseLenTrail * t2;
-				const y2 = start.y + Math.sin(this.animatedAngle) * baseLenTrail * t2;
+				const x1 =
+					start.x + Math.cos(this.animatedAngle) * baseLenTrail * t1;
+				const y1 =
+					start.y + Math.sin(this.animatedAngle) * baseLenTrail * t1;
+				const x2 =
+					start.x + Math.cos(this.animatedAngle) * baseLenTrail * t2;
+				const y2 =
+					start.y + Math.sin(this.animatedAngle) * baseLenTrail * t2;
 
 				const fade = (i + 1) / steps;
 				const alpha = p.lerp(0.05, 0.5, fade);
@@ -283,7 +313,10 @@ class Branch {
 			const rippleCount = 4;
 			for (let i = 0; i < rippleCount; i++) {
 				const rippleProgress = i / rippleCount;
-				const radius = 8 + rippleProgress * 18 + Math.sin(p.millis() / 150 + i) * 2;
+				const radius =
+					8 +
+					rippleProgress * 18 +
+					Math.sin(p.millis() / 150 + i) * 2;
 				const alpha = 0.12 * (1 - rippleProgress);
 
 				p.noStroke();
@@ -292,10 +325,12 @@ class Branch {
 			}
 
 			// Core animated glow dot
-			const pulseSize = 3.5 + Math.sin(p.millis() / 100 + this.depth) * 1.4;
+			const pulseSize =
+				3.5 + Math.sin(p.millis() / 100 + this.depth) * 1.4;
 
 			(p.drawingContext as CanvasRenderingContext2D).shadowBlur = 25;
-			(p.drawingContext as CanvasRenderingContext2D).shadowColor = `hsla(${shineHue}, 100%, 60%, 0.9)`;
+			(p.drawingContext as CanvasRenderingContext2D).shadowColor =
+				`hsla(${shineHue}, 100%, 60%, 0.9)`;
 			p.noStroke();
 			p.fill(`hsla(${shineHue}, 100%, 60%, 0.9)`);
 			p.circle(shineDotX, shineDotY, pulseSize);
@@ -311,12 +346,26 @@ class Branch {
 		const start = this.getStartPosition();
 		const end = this.getEndPosition();
 
-		const d = this.pointToSegmentDistance(mx, my, start.x, start.y, end.x, end.y);
+		const d = this.pointToSegmentDistance(
+			mx,
+			my,
+			start.x,
+			start.y,
+			end.x,
+			end.y,
+		);
 		return d < 8; // threshold in pixels (adjust as needed)
 	}
 
 	// Helper for point-line distance
-	pointToSegmentDistance(px: number, py: number, x1: number, y1: number, x2: number, y2: number): number {
+	pointToSegmentDistance(
+		px: number,
+		py: number,
+		x1: number,
+		y1: number,
+		x2: number,
+		y2: number,
+	): number {
 		const A = px - x1;
 		const B = py - y1;
 		const C = x2 - x1;
@@ -388,7 +437,7 @@ const circuitTreeWithGrowthSmoothSketch = (p: p5) => {
 				originX: p.width / 2,
 				originY: p.height,
 			},
-			p.millis()
+			p.millis(),
 		);
 
 	p.setup = () => {
