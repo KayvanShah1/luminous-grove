@@ -34,7 +34,7 @@ jobs:
 
       - name: Set publish version
         working-directory: packages/neuromorph
-        run: pnpm version 0.1.${{ github.run_number }} --no-git-tag-version
+        run: pnpm pkg set version 0.1.${{ github.run_number }}
 
       - name: Create git tag and push
         run: |
