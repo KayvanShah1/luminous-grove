@@ -8,6 +8,12 @@ branching patterns found in neural dendrites, fungal mycelium, and circuit board
 traces, it produces living, breathing digital organisms that respond to your
 touch.
 
+[![npm version](https://img.shields.io/npm/v/@kayvanshah1/neuromorph?color=orange&logo=npm)](https://www.npmjs.com/package/@kayvanshah1/neuromorph)
+[![Publish Package](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/publish-npm.yml)
+[![Deploy Pages](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/KayvanShah1/luminous-grove/actions/workflows/deploy-pages.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 ## Overview
 
 Neuromorph is an algorithmic art project that simulates organic neural growth
@@ -125,10 +131,10 @@ npm install @kayvanshah1/neuromorph
 import { NeuromorphTree } from "@kayvanshah1/neuromorph";
 
 <div style={{ height: 600 }}>
-  <NeuromorphTree
-    config={{ maxDepth: 7, branchSpread: 60, glowStrength: 30 }}
-    onNodeCount={(n) => console.log(`${n} nodes`)}
-  />
+	<NeuromorphTree
+		config={{ maxDepth: 7, branchSpread: 60, glowStrength: 30 }}
+		onNodeCount={(n) => console.log(`${n} nodes`)}
+	/>
 </div>;
 ```
 
@@ -138,10 +144,8 @@ import { NeuromorphTree } from "@kayvanshah1/neuromorph";
 import { createNeuromorphTree } from "@kayvanshah1/neuromorph/core";
 
 const container = document.getElementById("neuromorph")!;
-const instance = createNeuromorphTree(
-  container,
-  { treeScale: 0.85 },
-  (count) => console.log(count)
+const instance = createNeuromorphTree(container, { treeScale: 0.85 }, (count) =>
+	console.log(count),
 );
 
 // Later:
@@ -186,4 +190,3 @@ Read the [MIT](/LICENSE) here.
 Inspired by neural networks, procedural generation, and natural growth patterns.
 
 **Explore the living forest. Shape the neural growth. Create something unique.**
-
