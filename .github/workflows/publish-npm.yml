@@ -37,7 +37,9 @@ jobs:
 
       - name: Set publish version
         working-directory: packages/neuromorph
-        run: pnpm version 0.1.${{ github.run_number }} --no-git-tag-version
+        run: |
+          VERSION="0.1.${{ github.run_number }}"
+          pnpm version $VERSION --no-git-tag-version
 
       - name: Create git tag and push
         run: |
@@ -54,7 +56,8 @@ jobs:
           git tag "v${VERSION}"
           git push origin HEAD:main --tags
 
-      - run:
+      - name: Publish to npm
+        run:
           pnpm --filter @kayvanshah1/neuromorph publish --provenance --access
           public
         env:
