@@ -143,7 +143,7 @@ export class TreeController {
     this.height = this.container.clientHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    this.root = this.createTree();
+    // Don't regenerate tree on resize — just rescale the canvas
   };
 
   private createTree(): Branch {

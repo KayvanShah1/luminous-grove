@@ -25,7 +25,7 @@ const Index = () => {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-background">
+		<div className="relative min-h-screen flex flex-col overflow-hidden bg-background">
 			{/* Background gradient layers */}
 			<div className="fixed inset-0 z-0">
 				<div
@@ -58,7 +58,7 @@ const Index = () => {
 			<div className="noise-overlay" />
 
 			{/* Hero section */}
-			<section className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+			<section className="relative z-10 flex flex-col items-center justify-center flex-1">
 				{/* Background title */}
 				<h1
 					className="absolute font-display font-bold text-foreground/[0.04] select-none pointer-events-none leading-none"
@@ -70,10 +70,10 @@ const Index = () => {
 					NEUROMORPH
 				</h1>
 
-				{/* Tree visualization */}
+				{/* Tree visualization — constrained canvas */}
 				<div
-					className="relative w-full tree-canvas-mask"
-					style={{ height: "min(85vh, calc(100dvh - 4rem))" }}
+					className="relative w-3/4 max-w-5xl tree-canvas-mask mx-auto"
+					style={{ height: "min(65vh, calc(75dvh - 4rem))" }}
 				>
 					<NeuromorphTree
 						key={treeKey}
@@ -99,9 +99,13 @@ const Index = () => {
 			<InstructionTooltip />
 			<StatusPill nodeCount={nodeCount} />
 			<DemoFrame />
-			<div className="fixed bottom-1 md:bottom-3 left-1/2 -translate-x-1/2 z-20 text-[8px] sm:text-[10px] font-mono uppercase tracking-widest text-foreground/20">
-				© {year} Kayvan Shah
-			</div>
+
+			{/* Footer */}
+			<footer className="relative z-20 py-3 text-center">
+				<span className="text-[8px] sm:text-[10px] font-mono uppercase tracking-widest text-foreground/20">
+					© {year} Kayvan Shah
+				</span>
+			</footer>
 		</div>
 	);
 };
