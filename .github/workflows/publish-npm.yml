@@ -6,6 +6,7 @@ on:
       - "main"
     paths:
       - "packages/neuromorph/**"
+      - ".github/workflows/publish-npm.yml"
 
   workflow_dispatch:
 
@@ -36,7 +37,7 @@ jobs:
 
       - name: Set publish version
         working-directory: packages/neuromorph
-        run: pnpm pkg set version 0.1.${{ github.run_number }}
+        run: pnpm version 0.1.${{ github.run_number }} --no-git-tag-version
 
       - name: Create git tag and push
         run: |
