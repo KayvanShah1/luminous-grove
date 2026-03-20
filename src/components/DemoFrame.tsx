@@ -8,7 +8,7 @@ const DemoFrame = () => {
     return (
       <button
         onClick={() => setMinimized(false)}
-        className="fixed bottom-12 right-4 sm:bottom-16 sm:right-6 z-40 status-pill text-muted-foreground hover:text-foreground transition-colors text-[10px] sm:text-xs"
+        className="fixed bottom-[3.25rem] right-4 sm:bottom-16 sm:right-6 z-40 status-pill text-muted-foreground hover:text-foreground transition-colors text-[10px] sm:text-xs"
       >
         ◈ Embed Demo
       </button>

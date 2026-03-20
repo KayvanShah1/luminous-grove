@@ -73,7 +73,7 @@ const Index = () => {
 				{/* Tree visualization */}
 				<div
 					className="relative w-full tree-canvas-mask"
-					style={{ height: "85vh" }}
+					style={{ height: "min(85vh, calc(100dvh - 4rem))" }}
 				>
 					<NeuromorphTree
 						key={treeKey}
