@@ -39,7 +39,7 @@ jobs:
         working-directory: packages/neuromorph
         run: |
           VERSION="0.1.${{ github.run_number }}"
-          pnpm version $VERSION --no-git-tag-version
+          node -e "let p=require('./package.json'); p.version='${VERSION}'; require('fs').writeFileSync('package.json', JSON.stringify(p, null, 2));"
 
       - name: Create git tag and push
         run: |
