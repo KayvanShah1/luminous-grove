@@ -85,7 +85,7 @@ const InstructionTooltip = () => {
 								Tap / Click
 							</span>
 							<span className="text-primary/80 text-left">
-								Apply sway
+								Apply sway <br /> (branch)
 							</span>
 						</div>
 
@@ -94,7 +94,7 @@ const InstructionTooltip = () => {
 								Long Press / Right Click
 							</span>
 							<span className="text-primary/80 text-left">
-								Signal pulse
+								Signal pulse <br /> (branch)
 							</span>
 						</div>
 

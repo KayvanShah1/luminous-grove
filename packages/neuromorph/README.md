@@ -134,6 +134,8 @@ type NeuromorphInstance = {
 - Call `destroy()` to clean up listeners and animation
 - `updateConfig()` applies changes without full rebuild
 - `regenerate()` creates a new tree with a fresh seed
+- Window resize keeps the existing tree and re-anchors it to bottom-center
+- Screenshot export keeps current render resolution and auto-crops excess space
 
 ## Interactions
 

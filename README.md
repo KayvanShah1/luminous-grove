@@ -38,6 +38,7 @@ responsive.
 - **Customizer panel** — tweak depth, spread, scale, glow, thickness, hit radius,
   and timing in real time
 - **Screenshot export** — press `S` to capture the current tree as a PNG
+- **Smart screenshot crop** — exports at render resolution and trims excess space
 - **Forest environment** — ambient floating particles and layered radial
   gradients create depth
 - **Responsive & performant** — pure Canvas 2D, zero dependencies on heavy
