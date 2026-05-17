@@ -34,6 +34,13 @@ function randomRange(min: number, max: number): number {
 	return min + Math.random() * (max - min);
 }
 
+interface Bounds {
+	minX: number;
+	minY: number;
+	maxX: number;
+	maxY: number;
+}
+
 export class TreeController {
 	private animFrameId: number | null = null;
 	private config: TreeConfig;
@@ -148,21 +155,113 @@ export class TreeController {
 		if (e.key === "s" && this.canvas) {
 			const now = new Date();
 			const filename = `neuromorph_${now.toISOString().replace(/[:.]/g, "")}`;
+			const region = this.getScreenshotRegion();
+			const exportCanvas = document.createElement("canvas");
+			exportCanvas.width = region.width;
+			exportCanvas.height = region.height;
+			const exportCtx = exportCanvas.getContext("2d");
+			if (!exportCtx) return;
+
+			// Keep original rendered resolution, then crop around the tree.
+			exportCtx.drawImage(
+				this.canvas,
+				region.x,
+				region.y,
+				region.width,
+				region.height,
+				0,
+				0,
+				region.width,
+				region.height,
+			);
+
 			const link = document.createElement("a");
 			link.download = `${filename}.png`;
-			link.href = this.canvas.toDataURL("image/png");
+			link.href = exportCanvas.toDataURL("image/png");
 			link.click();
 		}
 	};
 
 	private handleResize = () => {
 		if (!this.container || !this.canvas) return;
+		const previousWidth = this.width;
+		const previousHeight = this.height;
 		this.width = this.container.clientWidth;
 		this.height = this.container.clientHeight;
 		this.canvas.width = this.width;
 		this.canvas.height = this.height;
-		this.root = this.createTree();
+		if (!this.root) {
+			this.root = this.createTree();
+			return;
+		}
+
+		const dx = this.width / 2 - previousWidth / 2;
+		const dy = this.height - previousHeight;
+		this.root.translate(dx, dy);
+		this.root.updateCanvasBounds(this.width, this.height);
 	};
+
+	private getScreenshotRegion(): {
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+	} {
+		const canvasWidth = Math.max(1, this.canvas?.width ?? this.width);
+		const canvasHeight = Math.max(1, this.canvas?.height ?? this.height);
+		if (!this.root) {
+			return { x: 0, y: 0, width: canvasWidth, height: canvasHeight };
+		}
+
+		const bounds = this.root.getTreeBounds(this.config);
+		const rootStart = this.root.getStartPosition();
+		const sidePadding = Math.max(18, this.config.branchThickness * 6);
+		const topPadding = Math.max(20, this.config.branchThickness * 7);
+		const bottomPadding = Math.max(28, this.config.branchThickness * 10);
+
+		const minX = constrain(bounds.minX - sidePadding, 0, canvasWidth - 1);
+		const minY = constrain(bounds.minY - topPadding, 0, canvasHeight - 1);
+		const maxX = constrain(bounds.maxX + sidePadding, 1, canvasWidth);
+		const maxY = constrain(
+			Math.max(bounds.maxY + sidePadding, rootStart.y + bottomPadding),
+			1,
+			canvasHeight,
+		);
+
+		const x = Math.floor(minX);
+		const y = Math.floor(minY);
+		let width = Math.max(1, Math.ceil(maxX) - x);
+		let height = Math.max(1, Math.ceil(maxY) - y);
+		let cropX = x;
+		let cropY = y;
+
+		// Prevent very tight crops from producing visually tiny screenshots.
+		const minCropWidth = Math.min(
+			canvasWidth,
+			Math.max(420, Math.floor(canvasWidth * 0.52)),
+		);
+		const minCropHeight = Math.min(
+			canvasHeight,
+			Math.max(300, Math.floor(canvasHeight * 0.6)),
+		);
+
+		if (width < minCropWidth) {
+			const grow = minCropWidth - width;
+			cropX -= Math.floor(grow / 2);
+			width = minCropWidth;
+		}
+
+		if (height < minCropHeight) {
+			const grow = minCropHeight - height;
+			cropY -= Math.floor(grow / 2);
+			height = minCropHeight;
+		}
+
+		cropX = constrain(cropX, 0, canvasWidth - width);
+		cropY = constrain(cropY, 0, canvasHeight - height);
+
+		return { x: cropX, y: cropY, width, height };
+	}
 
 	private createTree(): Branch {
 		const now = performance.now();
@@ -447,6 +546,59 @@ class Branch {
 		};
 	}
 
+	getTreeBounds(config: TreeConfig): Bounds {
+		const start = this.getStartPosition();
+		const end = this.getEndPosition();
+		const thickness = lerp(
+			config.branchThickness,
+			0.5,
+			this.depth / config.maxDepth,
+		);
+		const branchPad = Math.max(1, thickness / 2);
+
+		let minX = Math.min(start.x, end.x) - branchPad;
+		let minY = Math.min(start.y, end.y) - branchPad;
+		let maxX = Math.max(start.x, end.x) + branchPad;
+		let maxY = Math.max(start.y, end.y) + branchPad;
+
+		if (
+			this.children.length === 0 &&
+			this.hasLeaf &&
+			this.lengthProgress >= 0.99
+		) {
+			const leafRadius = map(this.depth, 2, config.maxDepth, 3, 6, true) * 1.35;
+			minX = Math.min(minX, end.x - leafRadius);
+			minY = Math.min(minY, end.y - leafRadius);
+			maxX = Math.max(maxX, end.x + leafRadius);
+			maxY = Math.max(maxY, end.y + leafRadius);
+		}
+
+		if (this.shineProgress >= 0 && this.shineProgress < 1) {
+			const baseLen = this.length * this.lengthProgress;
+			const shineDotX =
+				start.x +
+				Math.cos(this.animatedAngle) * baseLen * this.shineProgress;
+			const shineDotY =
+				start.y +
+				Math.sin(this.animatedAngle) * baseLen * this.shineProgress;
+			const glowRadius = Math.max(config.glowStrength, 26);
+			minX = Math.min(minX, shineDotX - glowRadius);
+			minY = Math.min(minY, shineDotY - glowRadius);
+			maxX = Math.max(maxX, shineDotX + glowRadius);
+			maxY = Math.max(maxY, shineDotY + glowRadius);
+		}
+
+		for (const child of this.children) {
+			const childBounds = child.getTreeBounds(config);
+			minX = Math.min(minX, childBounds.minX);
+			minY = Math.min(minY, childBounds.minY);
+			maxX = Math.max(maxX, childBounds.maxX);
+			maxY = Math.max(maxY, childBounds.maxY);
+		}
+
+		return { minX, minY, maxX, maxY };
+	}
+
 	isMouseNearBranch(mx: number, my: number, hitTestRadius: number): boolean {
 		const start = this.getStartPosition();
 		const end = this.getEndPosition();
@@ -513,6 +665,21 @@ class Branch {
 			}
 		}
 		return null;
+	}
+
+	translate(dx: number, dy: number) {
+		if (!this.parent) {
+			this.originX = (this.originX ?? this.canvasWidth / 2) + dx;
+			this.originY = (this.originY ?? this.canvasHeight) + dy;
+		}
+	}
+
+	updateCanvasBounds(width: number, height: number) {
+		this.canvasWidth = width;
+		this.canvasHeight = height;
+		for (const child of this.children) {
+			child.updateCanvasBounds(width, height);
+		}
 	}
 
 	drawTree(ctx: CanvasRenderingContext2D, config: TreeConfig) {
