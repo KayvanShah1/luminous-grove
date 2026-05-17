@@ -31,12 +31,12 @@ responsive.
   mimicking natural morphogenesis
 - **Bioluminescent glow** — neon-lit edges and leaf nodes with configurable
   bloom and shadow effects
-- **Signal pulse propagation** — right-click sends a light pulse that cascades
-  through the entire branch network
-- **Physics-based sway** — click to disturb the tree; watch it ripple and settle
-  with exponential decay
-- **Customizer panel** — tweak depth, spread, scale, glow, thickness, and timing
-  in real time
+- **Signal pulse propagation** — right-click on a branch sends a light pulse that
+  cascades through the entire branch network
+- **Physics-based sway** — left-click on a branch to disturb the tree; watch it
+  ripple and settle with exponential decay
+- **Customizer panel** — tweak depth, spread, scale, glow, thickness, hit radius,
+  and timing in real time
 - **Screenshot export** — press `S` to capture the current tree as a PNG
 - **Forest environment** — ambient floating particles and layered radial
   gradients create depth
@@ -52,8 +52,8 @@ https://kayvanshah1.github.io/luminous-grove/
 
 | Input            | Action                                  |
 | ---------------- | --------------------------------------- |
-| **Left-click**   | Trigger organic sway across branches    |
-| **Right-click**  | Fire a signal pulse from root to leaves |
+| **Left-click**   | Trigger sway when clicking on a branch  |
+| **Right-click**  | Fire pulse when clicking on a branch    |
 | **Double-click** | Regenerate with a new random seed       |
 | **Press S**      | Save screenshot to clipboard/download   |
 
@@ -114,6 +114,7 @@ interface TreeConfig {
 	branchThickness: number; // Base stroke width (default: 4)
 	glowStrength: number; // Shadow blur radius (default: 25)
 	shineInterval: number; // Auto-pulse interval in ms (default: 3000)
+	hitTestRadius: number; // Branch click detection radius in px (default: 8)
 }
 ```
 

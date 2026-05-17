@@ -17,7 +17,7 @@ propagation.
 
 - Fractal, recursive tree generation
 - Signal pulse propagation through branches
-- Physics-based sway interactions
+- Branch-targeted interactions (left/right click on branch)
 - Real-time configurable parameters
 - Lightweight (Canvas 2D, no heavy dependencies)
 - React + framework-agnostic core API
@@ -110,7 +110,7 @@ type NeuromorphTreeProps = {
 
 - Parent container must have an explicit size
 - `config` is merged with defaults
-- `onNodeCount` fires after init and regeneration
+- `onNodeCount` fires on each automatic pulse cycle (`shineInterval`)
 
 ### `createNeuromorphTree` (Core)
 
@@ -135,6 +135,15 @@ type NeuromorphInstance = {
 - `updateConfig()` applies changes without full rebuild
 - `regenerate()` creates a new tree with a fresh seed
 
+## Interactions
+
+| Input            | Action                               |
+| ---------------- | ------------------------------------ |
+| **Left-click**   | Trigger sway when clicking a branch  |
+| **Right-click**  | Fire pulse when clicking a branch    |
+| **Double-click** | Regenerate with a new random seed    |
+| **Press S**      | Save screenshot as PNG               |
+
 ## Configuration
 
 ### `TreeConfig`
@@ -156,6 +165,7 @@ type NeuromorphInstance = {
 | `branchThickness`   | `4`     | Stroke width                   |
 | `glowStrength`      | `25`    | Glow intensity                 |
 | `shineInterval`     | `3000`  | Auto pulse interval (ms)       |
+| `hitTestRadius`     | `8`     | Branch click detection radius (px) |
 
 ## Build
 
