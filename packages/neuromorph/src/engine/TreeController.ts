@@ -115,6 +115,10 @@ export class TreeController {
 		if (mx < 0 || mx > this.width || my < 0 || my > this.height) return;
 
 		this.canvas.focus();
+		const clickedBranch =
+			this.root.findClickedBranch(mx, my, this.config.hitTestRadius) !==
+			null;
+		if (!clickedBranch) return;
 
 		if (e.button === 0) {
 			// Left click - sway
@@ -441,6 +445,74 @@ class Branch {
 			x: x + Math.cos(this.animatedAngle) * len,
 			y: y + Math.sin(this.animatedAngle) * len,
 		};
+	}
+
+	isMouseNearBranch(mx: number, my: number, hitTestRadius: number): boolean {
+		const start = this.getStartPosition();
+		const end = this.getEndPosition();
+		const distance = this.pointToSegmentDistance(
+			mx,
+			my,
+			start.x,
+			start.y,
+			end.x,
+			end.y,
+		);
+		return distance < hitTestRadius;
+	}
+
+	pointToSegmentDistance(
+		px: number,
+		py: number,
+		x1: number,
+		y1: number,
+		x2: number,
+		y2: number,
+	): number {
+		const A = px - x1;
+		const B = py - y1;
+		const C = x2 - x1;
+		const D = y2 - y1;
+		const dot = A * C + B * D;
+		const lenSq = C * C + D * D;
+		let param = -1;
+		if (lenSq !== 0) {
+			param = dot / lenSq;
+		}
+
+		let xx: number;
+		let yy: number;
+		if (param < 0) {
+			xx = x1;
+			yy = y1;
+		} else if (param > 1) {
+			xx = x2;
+			yy = y2;
+		} else {
+			xx = x1 + param * C;
+			yy = y1 + param * D;
+		}
+
+		const dx = px - xx;
+		const dy = py - yy;
+		return Math.sqrt(dx * dx + dy * dy);
+	}
+
+	findClickedBranch(
+		mx: number,
+		my: number,
+		hitTestRadius: number,
+	): Branch | null {
+		if (this.isMouseNearBranch(mx, my, hitTestRadius)) {
+			return this;
+		}
+		for (const child of this.children) {
+			const hit = child.findClickedBranch(mx, my, hitTestRadius);
+			if (hit) {
+				return hit;
+			}
+		}
+		return null;
 	}
 
 	drawTree(ctx: CanvasRenderingContext2D, config: TreeConfig) {

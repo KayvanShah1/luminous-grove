@@ -180,6 +180,22 @@ const CustomizerPanel = ({
 				</div>
 			</div>
 
+			{/* Interaction */}
+			<div className="mb-3 sm:mb-4">
+				<span className="text-[10px] font-mono uppercase tracking-widest text-primary/50 mb-1.5 sm:mb-2 block">
+					Interaction
+				</span>
+				<div className="space-y-1.5 sm:space-y-2">
+					<SliderRow
+						label="Hit Radius"
+						value={config.hitTestRadius}
+						min={2}
+						max={24}
+						onChange={(v) => update("hitTestRadius", v)}
+					/>
+				</div>
+			</div>
+
 			{/* Growth */}
 			<div className="mb-3 sm:mb-4">
 				<span className="text-[10px] font-mono uppercase tracking-widest text-primary/50 mb-1.5 sm:mb-2 block">

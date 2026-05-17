@@ -14,6 +14,7 @@ export interface TreeConfig {
   branchThickness: number;
   glowStrength: number;
   shineInterval: number;
+  hitTestRadius: number;
 }
 
 export const defaultConfig: TreeConfig = {
@@ -32,4 +33,5 @@ export const defaultConfig: TreeConfig = {
   branchThickness: 4,
   glowStrength: 25,
   shineInterval: 3000,
+  hitTestRadius: 8,
 };
